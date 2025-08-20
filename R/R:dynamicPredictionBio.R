@@ -120,7 +120,7 @@ dynamicPredictionBio = function(bio_i, data.predict.all, long_fit_all, survival_
   
   risk.prob.0 = risk.prob.1 = NULL
   ### marginal probability T
-  S_T_all_infinity = marginalT(data.predict.all, long_fit_all, survival_fit_all, l_i = predict.time.infinity.1, upper_bound)
+  S_T_all_infinity = BJM:::marginalT(data.predict.all, long_fit_all, survival_fit_all, l_i = predict.time.infinity.1, upper_bound)
   
 
   Y_upper = max(data.predict.all[[bio_i]][as.character(formula(long_fit_all[[3]][[bio_i]])[[2]])], na.rm = TRUE)
@@ -133,15 +133,15 @@ dynamicPredictionBio = function(bio_i, data.predict.all, long_fit_all, survival_
   #with competing risk
   if(length(survival_fit_all[[4]]) != 0){
     #conditional probability D|T
-    D_T_all_infinity = conditionalDT(data.predict.all, long_fit_all, survival_fit_all, 
+    D_T_all_infinity = BJM:::conditionalDT(data.predict.all, long_fit_all, survival_fit_all, 
                                      l_i = predict.time.infinity)
     #conditional probability Y|D,T
-    f_y_D_all_infinity = conditionalYDT(data.predict.all, long_fit_all, survival_fit_all, 
+    f_y_D_all_infinity = BJM:::conditionalYDT(data.predict.all, long_fit_all, survival_fit_all, 
                                         l_i = predict.time.infinity, survival_variable, 
                                         time_variable, survivalVariableAll, 
                                         survivalTransFunction)
     
-    f_y_D_all_predict = conditionalYDTBio(Y_all, time_new = prediction.time + horizon, 
+    f_y_D_all_predict = BJM:::conditionalYDTBio(Y_all, time_new = prediction.time + horizon, 
                                           bio_i, data.predict.all, long_fit_all, 
                                           survival_fit_all, 
                                           l_i = predict.time.infinity, survival_variable, 
@@ -175,9 +175,9 @@ dynamicPredictionBio = function(bio_i, data.predict.all, long_fit_all, survival_
   }else{ #without competing risk
     
     #conditional probability Y|T
-    f_y_D_all_infinity = conditionalYT(data.predict.all, long_fit_all, l_i = predict.time.infinity, 
+    f_y_D_all_infinity = BJM:::conditionalYT(data.predict.all, long_fit_all, l_i = predict.time.infinity, 
                                        survival_variable, time_variable, survivalVariableAll, survivalTransFunction)
-    f_y_D_all_predict = conditionalYTBio(Y_all, time_new = prediction.time + horizon, 
+    f_y_D_all_predict = BJM:::conditionalYTBio(Y_all, time_new = prediction.time + horizon, 
                                           bio_i, data.predict.all, long_fit_all, 
                                           l_i = predict.time.infinity, survival_variable, 
                                           time_variable, survivalVariableAll, 

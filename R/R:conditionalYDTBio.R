@@ -63,7 +63,7 @@ conditionalYDTBio = function(Y_all, time_new, bio_i, data.predict.all,
  
   # MVN variance 
   # Apply the function over each unique num using lapply for variance list
-  Sigma_all <- lapply(c(unlist(unique(data.long[[1]][num]))), process_variance, 
+  Sigma_all <- lapply(as.numeric(unlist(unique(data.long[[1]][num]))), process_variance, 
                       time_new, bio_i, data.predict.all, long_fit_all, time_variable)
   
   # A probability matrix, 

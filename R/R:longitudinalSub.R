@@ -149,10 +149,10 @@ longitdinalSub <- function(data.fit.all, LongSubFixed, LongSubRandom) {
                                  data.fit.one[, all.vars(LongSubFixed[[m]])])
     
     # Longitudinal outcomes by using "model.response" to get the response variable
-    yik[[m]] <- by(model.response(mf.fixed[[m]], "numeric"), c(data.fit.one[, id]), as.vector)
+    yik[[m]] <- by(model.response(mf.fixed[[m]], "numeric"), droplevels(data.fit.one[, id]), as.vector)
     
     # X design matrix, fixed effects design matrix
-    Xik[[m]] <- data.frame("id2" = c(data.fit.one[, id]),
+    Xik[[m]] <- data.frame("id2" = droplevels(data.fit.one[, id]),
                            model.matrix(LongSubFixed[[m]], data.fit.one))
     
     # n_k (number of observations per each m)
@@ -163,14 +163,14 @@ longitdinalSub <- function(data.fit.all, LongSubFixed, LongSubRandom) {
     Xik.list[[m]] <- by(Xik[[m]], Xik[[m]]$id2, function(u) {
       as.matrix(u[, -1])
     })
-  
+    
     # number of repeated measurements for each subject
     #nik.list[[m]] <- by(Xik[[m]], Xik[[m]][id], nrow)
     nik.list[[m]] <- by(Xik[[m]], Xik[[m]]$id2, nrow)
     
     # Z design matrix, random effects design matrix
     ffk <- nlme::splitFormula(LongSubRandom[[m]], "|")[[1]]
-    Zik[[m]] <- data.frame("id2" = data.fit.one[, id], model.matrix(ffk, data.fit.one))
+    Zik[[m]] <- data.frame("id2" = droplevels(data.fit.one[, id]), model.matrix(ffk, data.fit.one))
     
     # Z design matrix (list), list by subjects
     #Zik.list[[m]] <- by(Zik[[m]], c(unlist(Zik[[m]][id])), function(u) {
@@ -267,12 +267,12 @@ longitdinalSub <- function(data.fit.all, LongSubFixed, LongSubRandom) {
     # use the 'result' variable here, if necessary
     # ...
     out <- longitudinalSubVar(thetaLong = list("beta" = beta.1, "D" = D, "sigma2" = sigma2),
-                 l = l, tol.em = 1e-04, verbose = FALSE)
+                              l = l, tol.em = 1e-04, verbose = FALSE)
   } else {
     # code to execute if an error occurs
     # ...
     out <- longitudinalSubVar(thetaLong = list("beta" = beta.1, "D" = diag(1, dim(D)[1]), "sigma2" = sigma2),
-                 l = l, tol.em = 1e-04, verbose = FALSE)
+                              l = l, tol.em = 1e-04, verbose = FALSE)
   }
   ###**** need to changed back to Sigma_fit = out$D
   Sigma_fit = out$D
