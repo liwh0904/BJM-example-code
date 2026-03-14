@@ -13,10 +13,13 @@ data(pbc3)
 ############################################################
 data.plot.all = pbc3[!is.na(pbc3$status4),]
 pbc.cmt.cr <- cmtPlot(data.plot.all, condi_time2event = 5, 
-                      event_type_variable = 'status4', event_type = c("0", "1"),
-                      bio_variable = "albumin", time_variable = "year", 
+                      event_type_variable = 'status4', 
+                      event_type = c("0", "1"),
+                      bio_variable = "albumin", 
+                      time_variable = "year", 
                       survival_variable = "years", 
-                      interval_time = 1/4)
+                      interval_time = 1/4,
+                      id_variable = "id")
 
 ############################################################
 # Survival model
@@ -75,7 +78,7 @@ for(i in 1:length(LongSubFixed)){
   data.fit.all[[i]] = pbc3[pbc3$status3 == 1, ]
 }
 ## fitting longitudinal submodel
-long_fit_all = longitdinalSub(data.fit.all, LongSubFixed, LongSubRandom)
+long_fit_all = longitudinalSub(data.fit.all, LongSubFixed, LongSubRandom)
 
 ############################################################
 # Risk Dynamic prediction

@@ -1,5 +1,6 @@
 devtools::document()
 devtools::install()
+devtools::check()
 library(BJM)
 
 #####
@@ -66,7 +67,7 @@ for(i in 1:length(LongSubFixed)){
   data.fit.all[[i]] = pbc3[pbc3$status3 == 1, ]
 }
 ## fitting longitudinal submodel
-long_fit_all = longitdinalSub(data.fit.all, LongSubFixed, LongSubRandom)
+long_fit_all = longitudinalSub(data.fit.all, LongSubFixed, LongSubRandom)
 
 ############################################################
 # Risk Dynamic prediction
