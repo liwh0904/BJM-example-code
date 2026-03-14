@@ -46,9 +46,9 @@ marginalT = function(data.predict.all, long_fit_all, survival_fit_all, l_i, uppe
   ## covariates * parameter matrix
   if(dim(data.surv)[1] == 1){
     ## one sample
-    covariate_para_matrix = c(coxph_fit$coefficients  %*%  model.matrix(formMarginalSurv, data.surv)[,-1])
+    covariate_para_matrix = c(coxph_fit$coefficients  %*%  model.matrix(survival_fit_all[[2]], data.surv)[,-1])
   }else{
-    covariate_para_matrix = c(coxph_fit$coefficients  %*%  t(model.matrix(formMarginalSurv, data.surv)[,-1]))
+    covariate_para_matrix = c(coxph_fit$coefficients  %*%  t(model.matrix(survival_fit_all[[2]], data.surv)[,-1]))
   }
   
   ### cumulative survival
