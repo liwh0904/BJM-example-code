@@ -63,7 +63,6 @@
 #'
 #'   }
 #' @keywords datasets
-#' @seealso  \code{\link{renal}}.
 #' @source \code{\link[survival]{pbc}}.
 #' @references
 #'

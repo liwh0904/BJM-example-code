@@ -81,8 +81,7 @@
 #'   
 #'   }
 #' @keywords datasets
-#' @seealso \code{\link{renal}}.
-#' @source \code{\link[JM]{pbc2}} and \code{\link[survival]{pbc}}.
+#' @source \code{\link[survival]{pbc}}.
 #' @references
 #'
 #' Fleming T, Harrington D. \emph{Counting Processes and Survival Analysis}.
