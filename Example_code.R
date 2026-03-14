@@ -1,6 +1,9 @@
-devtools::document()
-devtools::install()
-devtools::check()
+#devtools::document()
+#devtools::install()
+#devtools::check()
+#devtools::build()
+install.packages("remotes")
+remotes::install_url("https://github.com/liwh0904/BJM/archive/refs/heads/main.zip")
 library(BJM)
 
 #####
@@ -92,8 +95,8 @@ risk.prob = dynamicPrediction(data.predict.all, long_fit_all, survival_fit_all,
 # Biomarker Dynamic prediction
 ############################################################
 Y_predict = dynamicPredictionBio(bio_i = 1, data.predict.all, long_fit_all, 
-                                 survival_fit_all, prediction.time = time.cutoff, 
-                                 horizon = prediction.horizon, time_variable = "year",
+                                 survival_fit_all, prediction.time = 3, 
+                                 horizon = 3, time_variable = "year",
                                  survivalVariableAll, survivalTransFunction,
                                  bandcount2 = 40, bandcount3 = 400)
 

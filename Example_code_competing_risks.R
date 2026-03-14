@@ -1,6 +1,9 @@
-devtools::document()
-devtools::install()
+#devtools::document()
+#devtools::install()
+install.packages("remotes")
+remotes::install_url("https://github.com/liwh0904/BJM/archive/refs/heads/main.zip")
 library(BJM)
+
 
 #####
 ##### With competing risks
@@ -26,7 +29,7 @@ pbc.cmt.cr <- cmtPlot(data.plot.all, condi_time2event = 5,
 ############################################################
 
 ## extract unique data
-data.survival.fitting =  data.raw.sim.1[!duplicated(data.raw.sim.1$id), ]
+data.survival.fitting =  pbc3[!duplicated(pbc3$id), ]
 ## survival model structure
 formMarginalSurv = Surv(years, status3) ~ age + sex
 ## status4 is the competing risk event type indicator can be 0 or 1
@@ -103,8 +106,8 @@ risk.prob = dynamicPrediction(data.predict.all, long_fit_all, survival_fit_all,
 # Biomarker Dynamic prediction
 ############################################################
 Y_predict = dynamicPredictionBio(bio_i = 1, data.predict.all, long_fit_all, 
-                                 survival_fit_all, prediction.time = time.cutoff, 
-                                 horizon = prediction.horizon, time_variable = "year",
+                                 survival_fit_all, prediction.time = 3, 
+                                 horizon = 3, time_variable = "year",
                                  survivalVariableAll, survivalTransFunction,
                                  bandcount2 = 40, bandcount3 = 400)
 
