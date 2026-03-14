@@ -1,12 +1,12 @@
 Package: BJM
-Title: Backward Joint Model for Dynamic Prediction Using Multivariate Longitudinal and Competing Risk Data
+Title: Backward Joint Model for Joint Dynamic Prediction of Survival and Multivariate Longitudinal Outcomes with or without Competing Risk Data
 Version: 0.1.0
 Authors@R: c(
     person("Wenhao", "li", email = "liwh0904@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5050-443X"))
            )
-Maintainer: Wenhao Li <wl68@rice.edu>
-Description: This package provides tools for fitting joint models that integrate longitudinal and time-to-event data, aimed at enabling dynamic prediction. It supports the analysis of multiple longitudinal outcomes alongside various event times, including both time-to-event data and scenarios involving competing risks. This functionality allows for comprehensive modeling of complex datasets where longitudinal and survival processes are interconnected.
+Maintainer: Wenhao Li <liwh0904@gmail.com>
+Description: This package provides tools for fitting joint models that integrate multivariate longitudinal and time-to-event data for dynamic prediction. It enables joint dynamic prediction of survival and future longitudinal outcomes, with or without competing risks. The implementation accommodates multiple biomarkers measured at irregular time points and is designed for prediction-focused analyses rather than parameter interpretation.
 License: MIT + file LICENSE
 LazyData: true
 Encoding: UTF-8
